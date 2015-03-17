@@ -27,7 +27,7 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OpenFOAM_parser}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OpenFOAM_parser/include}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/openfoam_example03/include}&quot;"/>
-									<listOptionValue builtIn="false" value="../../../SparseMatrix/matrix/matrix/include"/>
+									<listOptionValue builtIn="false" value="../../../../SparseMatrix/matrix/matrix/include"/>
 								</option>
 								<option id="gnu.cpp.compiler.option.dialect.std.817809680" name="Language standard" superClass="gnu.cpp.compiler.option.dialect.std" value="gnu.cpp.compiler.dialect.c++11" valueType="enumerated"/>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1598961881" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
@@ -44,7 +44,7 @@
 							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug.1925882545" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug">
 								<option id="gnu.cpp.link.option.paths.1272237417" name="Library search path (-L)" superClass="gnu.cpp.link.option.paths" valueType="libPaths">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OpenFOAM_parser/Debug}&quot;"/>
-									<listOptionValue builtIn="false" value="../../../SparseMatrix/matrix/matrix/Debug"/>
+									<listOptionValue builtIn="false" value="../../../../SparseMatrix/matrix/matrix/Debug"/>
 								</option>
 								<option id="gnu.cpp.link.option.libs.1041703675" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
 									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="OpenFOAM_parser"/>
