@@ -23,6 +23,8 @@ int		main	(	int 	argc,
 
 		size_t	cnt		=	0;
 
+		parser.getSize();
+
 		while(!parser.readData())
 		{
 			std::queue<double>	data	=	parser.getData();

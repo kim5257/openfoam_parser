@@ -15,6 +15,7 @@
 #include "boundaries.h"
 #include "volumes.h"
 #include "sparse_matrix.h"
+#include "sparse_matrix3.h"
 #include "matrix_error.h"
 
 #include <math.h>
@@ -212,9 +213,9 @@ int		main	(	int 	argc,
 		calcCenterVolumes(centerVolumes, cells, faces, points);
 		//ptrCenterVolumes(centerVolumes);
 
-		matrix::SparseMatrix			matrixA(cells.getSize(), cells.getSize());
-		matrix::SparseMatrix			matrixX(cells.getSize(), 1);
-		matrix::SparseMatrix			matrixB(cells.getSize(), 1);
+		matrix::SparseMatrix		matrixA(cells.getSize(), cells.getSize());
+		matrix::SparseMatrix		matrixX(cells.getSize(), 1);
+		matrix::SparseMatrix		matrixB(cells.getSize(), 1);
 
 		calcVolumeGradient	(	volumeGradients,
 									owners,
@@ -765,7 +766,7 @@ void	calcVolumeGradient	(	openfoam::Points&			volumeGradients,
 			}
 		}
 
-		matrixX	=	matrixA.solution(matrixB);
+		matrixX	=	matrixA.sol_cg(matrixB);
 
 		if( (cnt%10) == 0 )
 		{
@@ -813,11 +814,11 @@ void	storeMatrixAData		(	matrix::SparseMatrix&	matrixA,
 									FILE*						file
 								)
 {
-	for(matrix::col_t col=0;col<matrixA.getCol();++col)
+	for(size_t row=0;row<matrixA.getRow();++row)
 	{
-		for(matrix::row_t row=0;row<matrixA.getRow();++row)
+		for(size_t col=0;col<matrixA.getCol();++col)
 		{
-			fprintf(file, "%lf   ", matrixA.getElem(col, row));
+			fprintf(file, "%lf   ", matrixA.getElem(row, col));
 		}
 		fprintf(file, "\n");
 	}
