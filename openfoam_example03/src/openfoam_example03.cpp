@@ -15,7 +15,6 @@
 #include "boundaries.h"
 #include "volumes.h"
 #include "sparse_matrix.h"
-#include "sparse_matrix3.h"
 #include "matrix_error.h"
 
 #include <math.h>

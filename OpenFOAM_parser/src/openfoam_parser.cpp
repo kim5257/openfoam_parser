@@ -7,6 +7,8 @@
 
 #include "openfoam_parser.h"
 #include "openfoam_error.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 #define	FILE_READ		"r"
 #define	FILE_WRITE		"w"

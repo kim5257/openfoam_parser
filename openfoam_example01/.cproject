@@ -26,7 +26,8 @@
 								<option id="gnu.cpp.compiler.option.dialect.std.269954843" name="Language standard" superClass="gnu.cpp.compiler.option.dialect.std" value="gnu.cpp.compiler.dialect.c++11" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.option.include.paths.1621361176" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OpenFOAM_parser}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OpenFOAM_parser/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/openfoam_parser/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/openfoam_parser}&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.763258717" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
@@ -35,6 +36,7 @@
 								<option id="gnu.c.compiler.exe.debug.option.debugging.level.2041278030" name="Debug Level" superClass="gnu.c.compiler.exe.debug.option.debugging.level" value="gnu.c.debugging.level.max" valueType="enumerated"/>
 								<option id="gnu.c.compiler.option.include.paths.1451121903" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OpenFOAM_parser}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/openfoam_parser}&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.396577337" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
 							</tool>
@@ -42,9 +44,10 @@
 							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug.728510247" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug">
 								<option id="gnu.cpp.link.option.paths.1686095178" name="Library search path (-L)" superClass="gnu.cpp.link.option.paths" valueType="libPaths">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OpenFOAM_parser/Debug}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/openfoam_parser/Debug}&quot;"/>
 								</option>
 								<option id="gnu.cpp.link.option.libs.446067795" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
-									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="OpenFOAM_parser"/>
+									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="openfoam_parser"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.1778914670" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
@@ -54,6 +57,7 @@
 							<tool id="cdt.managedbuild.tool.gnu.assembler.exe.debug.1641778751" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.exe.debug">
 								<option id="gnu.both.asm.option.include.paths.922728949" name="Include paths (-I)" superClass="gnu.both.asm.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OpenFOAM_parser}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/openfoam_parser}&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.1341334678" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
 							</tool>
@@ -62,7 +66,7 @@
 				</configuration>
 			</storageModule>
 			<storageModule moduleId="org.eclipse.cdt.core.externalSettings">
-				<externalSettings containerId="OpenFOAM_parser;" factoryId="org.eclipse.cdt.core.cfg.export.settings.sipplier">
+				<externalSettings containerId="openfoam_parser;" factoryId="org.eclipse.cdt.core.cfg.export.settings.sipplier">
 					<externalSetting>
 						<entry flags="VALUE_WORKSPACE_PATH" kind="includePath" name="/OpenFOAM_parser"/>
 						<entry flags="VALUE_WORKSPACE_PATH" kind="libraryPath" name="/OpenFOAM_parser/Debug"/>
