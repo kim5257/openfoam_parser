@@ -8,7 +8,6 @@
 #ifndef INCLUDE_OPENFOAM_PARSER_H_
 #define INCLUDE_OPENFOAM_PARSER_H_
 
-#include <stdio.h>
 #include <stack>
 #include <queue>
 #include <string>
