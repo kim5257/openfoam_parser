@@ -81,7 +81,7 @@ protected:
 	inline bool	isBlank	(	char	val		);
 	inline	bool	isDigit	(	char	val		);
 public:
-	inline Hdr		getHdr		(	void	);
+	inline Hdr&	getHdr		(	void	);
 	inline size_t	getSize	(	void	);
 	inline std::queue<double>	getData	(	void	);
 };
@@ -116,7 +116,7 @@ bool	Parser::isDigit	(	char	val		)
 	return	digit;
 }
 
-Hdr		Parser::getHdr	(	void	)
+Hdr&	Parser::getHdr	(	void	)
 {
 	return	mHdr;
 }

@@ -19,7 +19,7 @@ struct	Owner
 	uint32_t	mCell;
 };
 
-typedef	std::vector<Owner>	owner_list_t;
+typedef	std::vector<Owner>	owner_vector_t;
 
 }
 

@@ -11,7 +11,7 @@ int		main	(	int 	argc,
 	{
 		// owner 파일 열기
 		openfoam::Parser_labelList	parser("owner");
-		openfoam::owner_list_t		owners;
+		openfoam::owner_vector_t		owners;
 
 		// 헤더 정보 읽기
 		parser.readHdr();
