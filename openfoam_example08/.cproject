@@ -24,7 +24,6 @@
 								<option id="gnu.cpp.compiler.exe.debug.option.optimization.level.1845868538" name="Optimization Level" superClass="gnu.cpp.compiler.exe.debug.option.optimization.level" value="gnu.cpp.compiler.optimization.level.none" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.exe.debug.option.debugging.level.162480377" name="Debug Level" superClass="gnu.cpp.compiler.exe.debug.option.debugging.level" value="gnu.cpp.compiler.debugging.level.max" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.option.include.paths.463879996" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OpenFOAM_parser}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/openfoam_parser}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/openfoam_example03/include}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/openfoam_parser/include}&quot;"/>
@@ -37,7 +36,6 @@
 								<option defaultValue="gnu.c.optimization.level.none" id="gnu.c.compiler.exe.debug.option.optimization.level.1938776194" name="Optimization Level" superClass="gnu.c.compiler.exe.debug.option.optimization.level" valueType="enumerated"/>
 								<option id="gnu.c.compiler.exe.debug.option.debugging.level.399509289" name="Debug Level" superClass="gnu.c.compiler.exe.debug.option.debugging.level" value="gnu.c.debugging.level.max" valueType="enumerated"/>
 								<option id="gnu.c.compiler.option.include.paths.82445452" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OpenFOAM_parser}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/openfoam_parser}&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.82763287" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
@@ -45,12 +43,10 @@
 							<tool id="cdt.managedbuild.tool.gnu.c.linker.exe.debug.705537790" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.exe.debug"/>
 							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug.1925882545" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug">
 								<option id="gnu.cpp.link.option.paths.1272237417" name="Library search path (-L)" superClass="gnu.cpp.link.option.paths" valueType="libPaths">
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OpenFOAM_parser/Debug}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/openfoam_parser/Debug}&quot;"/>
 									<listOptionValue builtIn="false" value="../../../../matrix/repo/matrix/Debug"/>
 								</option>
 								<option id="gnu.cpp.link.option.libs.1041703675" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
-									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="OpenFOAM_parser"/>
 									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="openfoam_parser"/>
 									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="matrix"/>
 									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="pthread"/>
@@ -62,7 +58,6 @@
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.assembler.exe.debug.1919182591" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.exe.debug">
 								<option id="gnu.both.asm.option.include.paths.565468232" name="Include paths (-I)" superClass="gnu.both.asm.option.include.paths" valueType="includePath">
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OpenFOAM_parser}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/openfoam_parser}&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.92398079" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
@@ -74,11 +69,8 @@
 			<storageModule moduleId="org.eclipse.cdt.core.externalSettings">
 				<externalSettings containerId="openfoam_parser;" factoryId="org.eclipse.cdt.core.cfg.export.settings.sipplier">
 					<externalSetting>
-						<entry flags="VALUE_WORKSPACE_PATH" kind="includePath" name="/OpenFOAM_parser"/>
 						<entry flags="VALUE_WORKSPACE_PATH" kind="includePath" name="/openfoam_parser"/>
-						<entry flags="VALUE_WORKSPACE_PATH" kind="libraryPath" name="/OpenFOAM_parser/Debug"/>
 						<entry flags="VALUE_WORKSPACE_PATH" kind="libraryPath" name="/openfoam_parser/Debug"/>
-						<entry flags="RESOLVED" kind="libraryFile" name="OpenFOAM_parser" srcPrefixMapping="" srcRootPath=""/>
 						<entry flags="RESOLVED" kind="libraryFile" name="openfoam_parser" srcPrefixMapping="" srcRootPath=""/>
 					</externalSetting>
 				</externalSettings>
