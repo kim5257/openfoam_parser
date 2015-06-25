@@ -5,8 +5,8 @@
  *      Author: asran
  */
 
-#ifndef INCLUDE_NEIGHBORS_H_
-#define INCLUDE_NEIGHBORS_H_
+#ifndef INCLUDE__NEIGHBORS_H_
+#define INCLUDE__NEIGHBORS_H_
 
 #include <vector>
 #include <stdint.h>
@@ -43,4 +43,4 @@ size_t		Neighbors::getSize	(	void	)
 
 }
 
-#endif /* INCLUDE_NEIGHBORS_H_ */
+#endif /* INCLUDE__NEIGHBORS_H_ */

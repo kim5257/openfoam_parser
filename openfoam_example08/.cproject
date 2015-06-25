@@ -25,9 +25,9 @@
 								<option id="gnu.cpp.compiler.exe.debug.option.debugging.level.162480377" name="Debug Level" superClass="gnu.cpp.compiler.exe.debug.option.debugging.level" value="gnu.cpp.compiler.debugging.level.max" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.option.include.paths.463879996" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/openfoam_parser}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/openfoam_example03/include}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/openfoam_parser/include}&quot;"/>
 									<listOptionValue builtIn="false" value="../../../../matrix/repo/matrix/include"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/openfoam_example08/include}&quot;"/>
 								</option>
 								<option id="gnu.cpp.compiler.option.dialect.std.817809680" name="Language standard" superClass="gnu.cpp.compiler.option.dialect.std" value="gnu.cpp.compiler.dialect.c++11" valueType="enumerated"/>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1598961881" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
@@ -64,6 +64,11 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
+					<sourceEntries>
+						<entry excluding="src|include" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="include"/>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
+					</sourceEntries>
 				</configuration>
 			</storageModule>
 			<storageModule moduleId="org.eclipse.cdt.core.externalSettings">
@@ -100,10 +105,8 @@
 								<option id="gnu.cpp.compiler.exe.release.option.optimization.level.781277352" name="Optimization Level" superClass="gnu.cpp.compiler.exe.release.option.optimization.level" value="gnu.cpp.compiler.optimization.level.most" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.exe.release.option.debugging.level.225974396" name="Debug Level" superClass="gnu.cpp.compiler.exe.release.option.debugging.level" value="gnu.cpp.compiler.debugging.level.none" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.option.include.paths.710524763" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OpenFOAM_parser}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OpenFOAM_parser/include}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/openfoam_example03/include}&quot;"/>
 									<listOptionValue builtIn="false" value="../../../SparseMatrix/matrix/matrix/include"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/openfoam_example08/include}&quot;"/>
 								</option>
 								<option id="gnu.cpp.compiler.option.dialect.std.588044826" name="Language standard" superClass="gnu.cpp.compiler.option.dialect.std" value="gnu.cpp.compiler.dialect.c++11" valueType="enumerated"/>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.2032456683" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
@@ -111,9 +114,7 @@
 							<tool id="cdt.managedbuild.tool.gnu.c.compiler.exe.release.381647611" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.exe.release">
 								<option defaultValue="gnu.c.optimization.level.most" id="gnu.c.compiler.exe.release.option.optimization.level.663981661" name="Optimization Level" superClass="gnu.c.compiler.exe.release.option.optimization.level" valueType="enumerated"/>
 								<option id="gnu.c.compiler.exe.release.option.debugging.level.1841786758" name="Debug Level" superClass="gnu.c.compiler.exe.release.option.debugging.level" value="gnu.c.debugging.level.none" valueType="enumerated"/>
-								<option id="gnu.c.compiler.option.include.paths.1008364695" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OpenFOAM_parser}&quot;"/>
-								</option>
+								<option id="gnu.c.compiler.option.include.paths.1008364695" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" valueType="includePath"/>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.1191595007" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.c.linker.exe.release.1113883505" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.exe.release"/>
@@ -123,7 +124,6 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OpenFOAM_parser/Release}&quot;"/>
 								</option>
 								<option id="gnu.cpp.link.option.libs.1347255357" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
-									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="OpenFOAM_parser"/>
 									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="matrix"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.251403054" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
@@ -132,24 +132,19 @@
 								</inputType>
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.assembler.exe.release.92069728" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.exe.release">
-								<option id="gnu.both.asm.option.include.paths.145054367" name="Include paths (-I)" superClass="gnu.both.asm.option.include.paths" valueType="includePath">
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OpenFOAM_parser}&quot;"/>
-								</option>
+								<option id="gnu.both.asm.option.include.paths.145054367" name="Include paths (-I)" superClass="gnu.both.asm.option.include.paths" valueType="includePath"/>
 								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.69046840" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
 							</tool>
 						</toolChain>
 					</folderInfo>
+					<sourceEntries>
+						<entry excluding="src|include" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="include"/>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
+					</sourceEntries>
 				</configuration>
 			</storageModule>
-			<storageModule moduleId="org.eclipse.cdt.core.externalSettings">
-				<externalSettings containerId="OpenFOAM_parser;" factoryId="org.eclipse.cdt.core.cfg.export.settings.sipplier">
-					<externalSetting>
-						<entry flags="VALUE_WORKSPACE_PATH" kind="includePath" name="/OpenFOAM_parser"/>
-						<entry flags="VALUE_WORKSPACE_PATH" kind="libraryPath" name="/OpenFOAM_parser/Debug"/>
-						<entry flags="RESOLVED" kind="libraryFile" name="OpenFOAM_parser" srcPrefixMapping="" srcRootPath=""/>
-					</externalSetting>
-				</externalSettings>
-			</storageModule>
+			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
 		</cconfiguration>
 	</storageModule>
 	<storageModule moduleId="cdtBuildSystem" version="4.0.0">

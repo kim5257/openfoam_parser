@@ -5,8 +5,8 @@
  *      Author: asran
  */
 
-#ifndef INCLUDE_FACES_H_
-#define INCLUDE_FACES_H_
+#ifndef INCLUDE__FACES_H_
+#define INCLUDE__FACES_H_
 
 #include <vector>
 #include <stdint.h>
@@ -45,4 +45,4 @@ size_t		Faces::getSize	(	void	)
 
 }
 
-#endif /* INCLUDE_FACES_H_ */
+#endif /* INCLUDE__FACES_H_ */

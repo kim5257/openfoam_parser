@@ -45,11 +45,11 @@ void		Points::prepare	(	void	)
 		std::queue<double>	data	=	mParser.getData();
 
 		// point 값을 구조체에 넣기
-		point.mX	=	(uint32_t)data.front();
+		point.mX	=	data.front();
 		data.pop();
-		point.mY	=	(uint32_t)data.front();
+		point.mY	=	data.front();
 		data.pop();
-		point.mZ	=	(uint32_t)data.front();
+		point.mZ	=	data.front();
 		data.pop();
 
 		// point 값을 points 자료구조에 적재

@@ -8,9 +8,9 @@
 #ifndef INCLUDE__OPENFOAM_H_
 #define INCLUDE__OPENFOAM_H_
 
-#include "openfoam_error.h"
-#include "openfoam_parser.h"
-#include "openfoam_parser_labellist.h"
-#include "openfoam_typedef.h"
+#include <owners.h>
+#include <points.h>
+#include <faces.h>
+#include <neighbours.h>
 
 #endif /* INCLUDE__OPENFOAM_H_ */

@@ -5,8 +5,8 @@
  *      Author: asran
  */
 
-#ifndef INCLUDE_BOUNDARIES_H_
-#define INCLUDE_BOUNDARIES_H_
+#ifndef INCLUDE__BOUNDARIES_H_
+#define INCLUDE__BOUNDARIES_H_
 
 #include <vector>
 #include <stdint.h>
@@ -49,4 +49,4 @@ size_t		Boundaries::getSize	(	void	)
 
 }
 
-#endif /* INCLUDE_BOUNDARIES_H_ */
+#endif /* INCLUDE__BOUNDARIES_H_ */

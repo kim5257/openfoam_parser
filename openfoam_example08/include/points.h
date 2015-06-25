@@ -5,8 +5,8 @@
  *      Author: asran
  */
 
-#ifndef INCLUDE_POINTS_H_
-#define INCLUDE_POINTS_H_
+#ifndef INCLUDE__POINTS_H_
+#define INCLUDE__POINTS_H_
 
 #include <vector>
 #include <stdint.h>
@@ -46,4 +46,4 @@ size_t		Points::getSize	(	void	)
 
 }
 
-#endif /* INCLUDE_POINTS_H_ */
+#endif /* INCLUDE__POINTS_H_ */

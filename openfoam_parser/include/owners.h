@@ -8,7 +8,10 @@
 #ifndef INCLUDE__OWNERS_H_
 #define INCLUDE__OWNERS_H_
 
-#include "openfoam.h"
+#include <openfoam_error.h>
+#include <openfoam_parser.h>
+#include <openfoam_parser_labellist.h>
+#include <openfoam_typedef.h>
 
 namespace	openfoam
 {

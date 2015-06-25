@@ -5,8 +5,8 @@
  *      Author: asran
  */
 
-#ifndef INCLUDE_CELLS_H_
-#define INCLUDE_CELLS_H_
+#ifndef INCLUDE__CELLS_H_
+#define INCLUDE__CELLS_H_
 
 #include <vector>
 #include <stdint.h>
@@ -45,4 +45,4 @@ size_t		Cells::getSize	(	void	)
 
 }
 
-#endif /* INCLUDE_CELLS_H_ */
+#endif /* INCLUDE__CELLS_H_ */

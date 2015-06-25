@@ -5,8 +5,8 @@
  *      Author: asran
  */
 
-#ifndef INCLUDE_VOLUMES_H_
-#define INCLUDE_VOLUMES_H_
+#ifndef INCLUDE__VOLUMES_H_
+#define INCLUDE__VOLUMES_H_
 
 #include <vector>
 #include <stdint.h>
@@ -43,4 +43,4 @@ size_t		Volumes::getSize	(	void	)
 
 }
 
-#endif /* INCLUDE_VOLUMES_H_ */
+#endif /* INCLUDE__VOLUMES_H_ */
