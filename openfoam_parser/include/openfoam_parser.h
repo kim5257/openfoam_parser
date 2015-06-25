@@ -5,15 +5,15 @@
  *      Author: asran
  */
 
-#ifndef INCLUDE_OPENFOAM_PARSER_H_
-#define INCLUDE_OPENFOAM_PARSER_H_
+#ifndef INCLUDE__OPENFOAM_PARSER_H_
+#define INCLUDE__OPENFOAM_PARSER_H_
 
+#include "openfoam_buf.h"
+#include "openfoam_debug.h"
+#include "openfoam_hdr.h"
 #include <stack>
 #include <queue>
 #include <string>
-#include "openfoam_hdr.h"
-#include "openfoam_buf.h"
-#include "openfoam_debug.h"
 
 namespace openfoam
 {
@@ -134,4 +134,4 @@ std::queue<double>	Parser::getData	(	void	)
 
 }
 
-#endif /* INCLUDE_OPENFOAM_PARSER_H_ */
+#endif /* INCLUDE__OPENFOAM_PARSER_H_ */

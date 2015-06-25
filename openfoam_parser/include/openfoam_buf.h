@@ -5,8 +5,8 @@
  *      Author: asran
  */
 
-#ifndef INCLUDE_OPENFOAM_BUF_H_
-#define INCLUDE_OPENFOAM_BUF_H_
+#ifndef INCLUDE__OPENFOAM_BUF_H_
+#define INCLUDE__OPENFOAM_BUF_H_
 
 #include <stdio.h>
 
@@ -42,4 +42,4 @@ Buffer::operator char*	(	void	)
 
 }
 
-#endif /* INCLUDE_OPENFOAM_BUF_H_ */
+#endif /* INCLUDE__OPENFOAM_BUF_H_ */

@@ -4,7 +4,6 @@
 	<comment></comment>
 	<projects>
 		<project>OpenFOAM_parser</project>
-		<project>openfoam_parser</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

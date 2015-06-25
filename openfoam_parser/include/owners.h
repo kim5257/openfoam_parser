@@ -5,8 +5,8 @@
  *      Author: asran
  */
 
-#ifndef INCLUDE_OWNERS_H_
-#define INCLUDE_OWNERS_H_
+#ifndef INCLUDE__OWNERS_H_
+#define INCLUDE__OWNERS_H_
 
 #include "openfoam.h"
 
@@ -47,4 +47,4 @@ Owner&		Owners::operator[]	(	size_t		index	)
 
 };
 
-#endif /* INCLUDE_OWNERS_H_ */
+#endif /* INCLUDE__OWNERS_H_ */

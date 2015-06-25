@@ -5,8 +5,8 @@
  *      Author: asran
  */
 
-#ifndef INCLUDE_OPENFOAM_PARSER_LABELLIST_H_
-#define INCLUDE_OPENFOAM_PARSER_LABELLIST_H_
+#ifndef INCLUDE__OPENFOAM_PARSER_LABELLIST_H_
+#define INCLUDE__OPENFOAM_PARSER_LABELLIST_H_
 
 #include "openfoam_parser.h"
 
@@ -25,4 +25,4 @@ protected:
 
 }
 
-#endif /* INCLUDE_OPENFOAM_PARSER_LABELLIST_H_ */
+#endif /* INCLUDE__OPENFOAM_PARSER_LABELLIST_H_ */
