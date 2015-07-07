@@ -22,11 +22,15 @@ private:
 	Parser				mParser;
 	point_vector_t	mData;
 public:
-				Points		(	const char		fileName[]		);
+				Points		(	const char			fileName[],
+								Parser::OpenType	type
+							);
 	virtual	~Points	(	void	);
 public:
-	void		prepare	(	void	);
-	Point&		getData	(	size_t		index	);
+	void		readFile	(	void	);
+	void		writeFile	(	void	);
+	Point&		getData	(	size_t			index	);
+	void		copy		(	const Points&	points	);
 public:
 	inline Hdr&		getHdr			(	void	);
 	inline size_t		getSize		(	void	);
@@ -35,7 +39,7 @@ public:
 
 Hdr&		Points::getHdr		(	void	)
 {
-	return	mParser.getHdr();
+	return	mParser.refHdr();
 }
 
 size_t		Points::getSize		(	void	)

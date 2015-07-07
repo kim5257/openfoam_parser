@@ -7,18 +7,20 @@
 
 #include "openfoam_parser.h"
 #include "openfoam_error.h"
+#include "openfoam_templet.h"
 #include <stdio.h>
 #include <stdlib.h>
 
-#define	FILE_READ		"r"
-#define	FILE_WRITE		"w"
+#define	FILE_READ_FLAG	"r"
+#define	FILE_WRITE_FLAG	"w"
 
 #define	BUF_SIZE		(1024)
 
 namespace openfoam
 {
 
-Parser::Parser	(	const char		fileName[]
+Parser::Parser	(	const char		fileName[],
+						OpenType		type
 					)
 :mFile(NULL),
 mBuf(BUF_SIZE),
@@ -31,7 +33,7 @@ mReadData(false),
 mDataDepth(0),
 mCurState(NOTHING)
 {
-	open(fileName);
+	open(fileName, type);
 }
 
 Parser::~Parser	(	void	)
@@ -39,17 +41,23 @@ Parser::~Parser	(	void	)
 	close();
 }
 
-void	Parser::open	(	const char		fileName[]
+void	Parser::open	(	const char		fileName[],
+							OpenType		type
 						)
 {
+	const char*	openType	=	NULL;
+
 	if( mFile != NULL )
 	{
 		// 파일이 이미 열림
 		throw	ErrMsg::createErrMsg("파일이 이미 열려있음");
 	}
 
+	openType	=	(type == Parser::FILE_READ)?
+					(FILE_READ_FLAG):(FILE_WRITE_FLAG);
+
 	mFile	=	fopen	(	fileName,
-							FILE_READ
+							openType
 						);
 
 	if( mFile == NULL )
@@ -57,12 +65,16 @@ void	Parser::open	(	const char		fileName[]
 		// 파일 열기 에러
 		throw	ErrMsg::createErrMsg("파일 열기 실패");
 	}
+
+	mOpenType	=	type;
+	mFileName	=	fileName;
 }
 
 void	Parser::close	(	void	)
 {
 	fclose(mFile);
-	mFile	=	NULL;
+	mFile		=	NULL;
+	mFileName	=	"";
 }
 
 void	Parser::readHdr	(	void	)
@@ -101,6 +113,123 @@ bool	Parser::readData	(	void	)
 	}
 
 	return	finish;
+}
+
+void	Parser::writeComment		(	void	)
+{
+	fprintf(mFile, OPENFOAM_TOP_COMMENT);
+}
+
+void	Parser::writeHdr			(	void	)
+{
+	fprintf(mFile, OPENFOAM_HDR_START);
+
+	if( strcmp(mHdr.getVersion(), "") != 0 )
+	{
+		fprintf(mFile, HDR_FORMAT, VERSION, mHdr.getVersion());
+	}
+
+	if( strcmp(mHdr.getFormat(), "") != 0 )
+	{
+		fprintf(mFile, HDR_FORMAT, FORMAT, mHdr.getFormat());
+	}
+
+	if( strcmp(mHdr.getClass(), "") != 0 )
+	{
+		fprintf(mFile, HDR_FORMAT, CLASS, mHdr.getClass());
+	}
+
+	if( strcmp(mHdr.getNote(), "") != 0 )
+	{
+		fprintf(mFile, HDR_FORMAT, NOTE, mHdr.getNote());
+	}
+
+	if( strcmp(mHdr.getLocation(), "") != 0 )
+	{
+		fprintf(mFile, HDR_FORMAT, LOCAITON, mHdr.getLocation());
+	}
+
+	if( strcmp(mHdr.getObject(), "") != 0 )
+	{
+		fprintf(mFile, HDR_FORMAT, OBJECT, mHdr.getObject());
+	}
+
+	fprintf(mFile, OPENFOAM_HDR_END);
+	fprintf(mFile, OPENFOAM_MID_SEPARATE"\n\n\n");
+}
+
+void	Parser::writeSize			(	size_t		size	)
+{
+	fprintf(mFile, "%lu\n", size);
+}
+
+void	Parser::writeDataStart	(	void	)
+{
+	fprintf(mFile, OPENFOAM_DATA_START"\n");
+}
+
+void	Parser::writeDataEnd		(	void	)
+{
+	fprintf(mFile, OPENFOAM_DATA_END"\n");
+
+	fprintf(mFile, "\n\n");
+	fprintf(mFile, OPENFOAM_LAST_SEPARATE"\n");
+}
+
+void	Parser::writeData			(	std::queue<int>		data,
+										bool					showFlag
+									)
+{
+	if( 1 < data.size() )
+	{
+		if( showFlag )
+		{
+			fprintf(mFile, "%lu", data.size());
+		}
+		fprintf(mFile, OPENFOAM_DATA_START);
+
+		fprintf(mFile, "%d", data.front());
+		data.pop();
+		while(!data.empty())
+		{
+			fprintf(mFile, " %d", data.front());
+			data.pop();
+		}
+
+		fprintf(mFile, OPENFOAM_DATA_END"\n");
+	}
+	else
+	{
+		fprintf(mFile, "%d\n", data.front());
+	}
+}
+
+void	Parser::writeData			(	std::queue<double>	data,
+										bool					showFlag
+									)
+{
+	if( 1 < data.size() )
+	{
+		if( showFlag )
+		{
+			fprintf(mFile, "%lu", data.size());
+		}
+		fprintf(mFile, OPENFOAM_DATA_START);
+
+		fprintf(mFile, "%g", data.front());
+		data.pop();
+		while(!data.empty())
+		{
+			fprintf(mFile, " %g", data.front());
+			data.pop();
+		}
+
+		fprintf(mFile, OPENFOAM_DATA_END"\n");
+	}
+	else
+	{
+		fprintf(mFile, "%4.2lf\n", data.front());
+	}
 }
 
 bool	Parser::doHandle	(	void	)
@@ -385,6 +514,7 @@ void		Parser::doHeader		(	char	val		)
 
 				DEBUG_PRINT("문자열 시작\n");
 				changeState(STRING);
+				mString	+=	'\"';
 			}
 			break;
 		case ';':
@@ -593,6 +723,7 @@ void		Parser::doString		(	char	val		)
 		switch( val )
 		{
 		case '\"':
+			mString	+=	'\"';
 			returnState();
 			DEBUG_PRINT("문자열 종료\n");
 			break;

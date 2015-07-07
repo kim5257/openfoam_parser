@@ -17,7 +17,9 @@ class	Parser_labelList:
 		public Parser
 {
 public:
-				Parser_labelList		(	const char		fileName[]		);
+				Parser_labelList		(	const char		fileName[],
+											OpenType		type
+										);
 	virtual	~Parser_labelList		(	void	);
 protected:
 	virtual void	doData	(	char	val		);

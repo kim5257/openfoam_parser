@@ -22,11 +22,15 @@ private:
 	Parser_labelList	mParser;
 	owner_vector_t	mData;
 public:
-				Owners		(	const char		fileName[]		);
+				Owners		(	const char			fileName[],
+								Parser::OpenType	type
+							);
 	virtual	~Owners	(	void	);
 public:
-	void		prepare	(	void	);
-	Owner&		getData	(	size_t		index	);
+	void		readFile	(	void	);
+	void		writeFile	(	void	);
+	Owner&		getData	(	size_t			index	);
+	void		copy		(	const Owners&	owners	);
 public:
 	inline Hdr&		getHdr			(	void	);
 	inline size_t		getSize		(	void	);
@@ -35,7 +39,7 @@ public:
 
 Hdr&		Owners::getHdr		(	void	)
 {
-	return	mParser.getHdr();
+	return	mParser.refHdr();
 }
 
 size_t		Owners::getSize		(	void	)

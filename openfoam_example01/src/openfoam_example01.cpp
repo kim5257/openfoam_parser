@@ -10,18 +10,18 @@ int		main	(	int 	argc,
 	try
 	{
 		// owner 파일 열기
-		openfoam::Parser_labelList	parser("owner");
+		openfoam::Parser_labelList	parser("owner", openfoam::Parser::FILE_READ);
 		openfoam::owner_vector_t		owners;
 
 		// 헤더 정보 읽기
 		parser.readHdr();
 
 		// 헤더 정보 출력
-		printf("version: %s\n",parser.getHdr().getVersion());
-		printf("format: %s\n",parser.getHdr().getFormat());
-		printf("class: %s\n",parser.getHdr().getClass());
-		printf("location: %s\n",parser.getHdr().getLocation());
-		printf("object: %s\n",parser.getHdr().getObject());
+		printf("version: %s\n",parser.refHdr().getVersion());
+		printf("format: %s\n",parser.refHdr().getFormat());
+		printf("class: %s\n",parser.refHdr().getClass());
+		printf("location: %s\n",parser.refHdr().getLocation());
+		printf("object: %s\n",parser.refHdr().getObject());
 
 		// 데이터 갯수 읽기
 		parser.readSize();

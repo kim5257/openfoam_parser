@@ -10,8 +10,10 @@
 namespace	openfoam
 {
 
-Faces::Faces	(	const char		fileName[]		)
-:mParser(fileName)
+Faces::Faces	(	const char			fileName[],
+					Parser::OpenType	type
+				)
+:mParser(fileName, type)
 {
 
 }
@@ -21,7 +23,7 @@ Faces::~Faces	(	void	)
 
 }
 
-void		Faces::prepare	(	void	)
+void		Faces::readFile	(	void	)
 {
 	// 헤더 정보 읽기
 	mParser.readHdr();
@@ -58,9 +60,50 @@ void		Faces::prepare	(	void	)
 	}
 }
 
+void		Faces::writeFile	(	void	)
+{
+	mParser.writeComment();
+	mParser.writeHdr();
+
+	mParser.writeSize(mData.size());
+	mParser.writeDataStart();
+
+	for(size_t cnt=0;cnt<mData.size();++cnt)
+	{
+		Face	face	=	getData(cnt);
+		std::queue<int>	data;
+
+		for(size_t num=0;num<POINTS_PER_FACE;++num)
+		{
+			data.push(face.mPoint[num]);
+		}
+		mParser.writeData(data, true);
+	}
+
+	mParser.writeDataEnd();
+}
+
+
 Face&		Faces::getData	(	size_t		index	)
 {
 	return	mData[index];
 }
+
+void		Faces::copy		(	const Faces&	faces	)
+{
+	if( mParser.getOpenType() != Parser::FILE_WRITE )
+	{
+		throw	ErrMsg::createErrMsg("파서가 파일 쓰기 형식으로 열리지 않았습니다.");
+	}
+
+	if( faces.mParser.getOpenType() != Parser::FILE_READ )
+	{
+		throw	ErrMsg::createErrMsg("복사 할 파서가 파일 읽기 형식으로 열리지 않았습니다.");
+	}
+
+	mData	=	faces.mData;
+	mParser.setHdr(faces.mParser.getHdr());
+}
+
 
 }

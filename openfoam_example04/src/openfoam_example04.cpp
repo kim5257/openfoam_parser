@@ -13,10 +13,13 @@ int		main	(	int 	argc,
 {
 	try
 	{
-		openfoam::Neighbours	neighbours("neighbour");
+		openfoam::Neighbours	neighbours("neighbour", openfoam::Parser::FILE_READ);
+		openfoam::Neighbours	neighbours2("copy_neighbour", openfoam::Parser::FILE_WRITE);
 
 		// owner 헤더 및 데이터 읽기
-		neighbours.prepare();
+		neighbours.readFile();
+		neighbours2.copy(neighbours);
+		neighbours2.writeFile();
 
 		// 헤더 정보 출력
 		printf("version: %s\n",neighbours.getHdr().getVersion());

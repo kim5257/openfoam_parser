@@ -24,6 +24,7 @@ private:
 	std::string		mObject;
 public:
 				Hdr		(	void	){}
+				inline Hdr		(	const Hdr&		hdr		);
 	virtual	~Hdr	(	void	){}
 public:
 	inline void	setVersion		(	const char	value[]		);
@@ -39,9 +40,17 @@ public:
 	inline const char*		getNote		(	void	);
 	inline const char*		getLocation	(	void	);
 	inline const char*		getObject		(	void	);
-private:
-
 };
+
+Hdr::Hdr		(	const Hdr&		hdr		)
+:mVersion(hdr.mVersion),
+ mFormat(hdr.mFormat),
+ mClass(hdr.mClass),
+ mNote(hdr.mNote),
+ mLocation(hdr.mLocation),
+ mObject(hdr.mObject)
+{
+}
 
 void	Hdr::setVersion		(	const char	value[]		)
 {

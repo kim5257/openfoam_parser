@@ -20,8 +20,16 @@ namespace openfoam
 
 class	Parser
 {
+public:
+	enum	OpenType
+	{
+		FILE_READ,
+		FILE_WRITE
+	};
 private:
-	FILE*		mFile;
+	OpenType		mOpenType;
+	std::string	mFileName;
+	FILE*			mFile;
 private:
 	Buffer		mBuf;
 	size_t		mDataSize;
@@ -53,15 +61,31 @@ protected:
 	State					mCurState;
 	std::stack<State>		mStateStack;
 public:
-				Parser		(	const char		fileName[]		);
+				Parser		(	const char		fileName[],
+								OpenType		type
+							);
 	virtual	~Parser	(	void	);
 private:
-	void	open	(	const char		fileName[]		);
+	void	open	(	const char		fileName[],
+						OpenType		type
+					);
 	void	close	(	void	);
 public:
 	void	readHdr	(	void	);
 	void	readSize	(	void	);
 	bool	readData	(	void	);
+public:
+	void	writeComment		(	void	);
+	void	writeHdr			(	void	);
+	void	writeSize			(	size_t		size	);
+	void	writeDataStart	(	void	);
+	void	writeDataEnd		(	void	);
+	void	writeData			(	std::queue<int>		data,
+									bool					showFlag
+								);
+	void	writeData			(	std::queue<double>	data,
+									bool					showFlag
+								);
 public:
 	bool	doHandle	(	void	);
 	void	readBuf	(	void	);
@@ -81,8 +105,12 @@ protected:
 	inline bool	isBlank	(	char	val		);
 	inline	bool	isDigit	(	char	val		);
 public:
-	inline Hdr&	getHdr		(	void	);
-	inline size_t	getSize	(	void	);
+	inline	OpenType		getOpenType	(	void	) const;
+	inline std::string	getFileName	(	void	) const;
+	inline	Hdr		getHdr		(	void	) const;
+	inline Hdr&	refHdr		(	void	);
+	inline void	setHdr		(	const Hdr&		hdr		);
+	inline size_t	getSize	(	void	) const;
 	inline std::queue<double>	getData	(	void	);
 };
 
@@ -116,12 +144,32 @@ bool	Parser::isDigit	(	char	val		)
 	return	digit;
 }
 
-Hdr&	Parser::getHdr	(	void	)
+Parser::OpenType		Parser::getOpenType	(	void	) const
+{
+	return	mOpenType;
+}
+
+std::string	Parser::getFileName	(	void	) const
+{
+	return	mFileName;
+}
+
+Hdr		Parser::getHdr	(	void	) const
 {
 	return	mHdr;
 }
 
-size_t	Parser::getSize	(	void	)
+Hdr&	Parser::refHdr	(	void	)
+{
+	return	mHdr;
+}
+
+void	Parser::setHdr	(	const Hdr&		hdr		)
+{
+	mHdr	=	hdr;
+}
+
+size_t	Parser::getSize	(	void	) const
 {
 	return	mElemSize;
 }

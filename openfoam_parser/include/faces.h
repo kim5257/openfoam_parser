@@ -22,11 +22,15 @@ private:
 	Parser				mParser;
 	face_vector_t		mData;
 public:
-				Faces		(	const char		fileName[]		);
+				Faces		(	const char			fileName[],
+								Parser::OpenType	type
+							);
 	virtual	~Faces		(	void	);
 public:
-	void		prepare	(	void	);
-	Face&		getData	(	size_t		index	);
+	void		readFile	(	void	);
+	void		writeFile	(	void	);
+	Face&		getData	(	size_t			index	);
+	void		copy		(	const Faces&	faces	);
 public:
 	inline Hdr&		getHdr			(	void	);
 	inline size_t		getSize		(	void	);
@@ -35,7 +39,7 @@ public:
 
 Hdr&		Faces::getHdr		(	void	)
 {
-	return	mParser.getHdr();
+	return	mParser.refHdr();
 }
 
 size_t		Faces::getSize		(	void	)

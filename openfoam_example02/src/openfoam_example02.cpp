@@ -9,10 +9,15 @@ int		main	(	int 	argc,
 {
 	try
 	{
-		openfoam::Owners	owners("owner");
+		openfoam::Owners	owners("owner", openfoam::Parser::FILE_READ);
+		openfoam::Owners	owners2("copy_owner", openfoam::Parser::FILE_WRITE);
 
 		// owner 헤더 및 데이터 읽기
-		owners.prepare();
+		owners.readFile();
+
+		owners2.copy(owners);
+
+		owners2.writeFile();
 
 		// 헤더 정보 출력
 		printf("version: %s\n",owners.getHdr().getVersion());

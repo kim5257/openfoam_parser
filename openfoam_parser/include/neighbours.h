@@ -22,11 +22,15 @@ private:
 	Parser_labelList		mParser;
 	neighbour_vector_t	mData;
 public:
-				Neighbours		(	const char		fileName[]		);
+				Neighbours		(	const char			fileName[],
+									Parser::OpenType	type
+								);
 	virtual	~Neighbours	(	void	);
 public:
-	void			prepare	(	void	);
-	Neighbour&		getData	(	size_t		index	);
+	void			readFile		(	void	);
+	void			writeFile		(	void	);
+	Neighbour&		getData		(	size_t				index		);
+	void			copy			(	const Neighbours&	neighbours	);
 public:
 	inline Hdr&			getHdr			(	void	);
 	inline size_t			getSize		(	void	);
@@ -35,7 +39,7 @@ public:
 
 Hdr&		Neighbours::getHdr		(	void	)
 {
-	return	mParser.getHdr();
+	return	mParser.refHdr();
 }
 
 size_t		Neighbours::getSize		(	void	)

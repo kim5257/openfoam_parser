@@ -13,10 +13,13 @@ int		main	(	int 	argc,
 {
 	try
 	{
-		openfoam::Faces	faces("faces");
+		openfoam::Faces	faces("faces", openfoam::Parser::FILE_READ);
+		openfoam::Faces	faces2("copy_faces", openfoam::Parser::FILE_WRITE);
 
 		// owner 헤더 및 데이터 읽기
-		faces.prepare();
+		faces.readFile();
+		faces2.copy(faces);
+		faces2.writeFile();
 
 		// 헤더 정보 출력
 		printf("version: %s\n",faces.getHdr().getVersion());
