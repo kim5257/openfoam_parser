@@ -12,5 +12,6 @@
 #include <points.h>
 #include <faces.h>
 #include <neighbours.h>
+#include <boundaries.h>
 
 #endif /* INCLUDE__OPENFOAM_H_ */

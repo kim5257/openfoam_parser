@@ -104,6 +104,8 @@ protected:
 protected:
 	inline bool	isBlank	(	char	val		);
 	inline	bool	isDigit	(	char	val		);
+protected:
+	inline FILE*	getFP		(	void	);
 public:
 	inline	OpenType		getOpenType	(	void	) const;
 	inline std::string	getFileName	(	void	) const;
@@ -142,6 +144,11 @@ bool	Parser::isDigit	(	char	val		)
 	}
 
 	return	digit;
+}
+
+FILE*	Parser::getFP		(	void	)
+{
+	return	mFile;
 }
 
 Parser::OpenType		Parser::getOpenType	(	void	) const

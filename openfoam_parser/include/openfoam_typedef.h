@@ -46,6 +46,16 @@ struct	Face
 
 typedef	std::vector<Face>		face_vector_t;
 
+struct	Boundary
+{
+	std::string	mName;
+	std::string	mType;
+	uint32_t		mFaces;
+	uint32_t		mStartFace;
+};
+
+typedef	std::vector<Boundary>	boundary_vector_t;
+
 }
 
 #endif	/* INCLUDE__OPENFOAM_TYPEDEF_H_ */
