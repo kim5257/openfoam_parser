@@ -22,11 +22,16 @@ private:
 	Parser				mParser;
 	face_vector_t		mData;
 public:
+				Faces		(	void	);
 				Faces		(	const char			fileName[],
 								Parser::OpenType	type
 							);
 	virtual	~Faces		(	void	);
 public:
+	void		open		(	const char			fileName[],
+								Parser::OpenType	type
+							);
+	void		close		(	void	);
 	void		readFile	(	void	);
 	void		writeFile	(	void	);
 	Face&		getData	(	size_t			index	);

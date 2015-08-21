@@ -10,6 +10,12 @@
 namespace	openfoam
 {
 
+Faces::Faces	(	void	)
+:mParser()
+{
+
+}
+
 Faces::Faces	(	const char			fileName[],
 					Parser::OpenType	type
 				)
@@ -21,6 +27,18 @@ Faces::Faces	(	const char			fileName[],
 Faces::~Faces	(	void	)
 {
 
+}
+
+void		Faces::open		(	const char			fileName[],
+									Parser::OpenType	type
+								)
+{
+	mParser.open(fileName, type);
+}
+
+void		Faces::close		(	void	)
+{
+	mParser.close();
 }
 
 void		Faces::readFile	(	void	)
@@ -49,7 +67,7 @@ void		Faces::readFile	(	void	)
 
 		while( !data.empty() )
 		{
-			face.mPoint[offset]	=	data.front();
+			face.mPoints.push_back(data.front());
 			data.pop();
 			offset++;
 		}
@@ -73,9 +91,9 @@ void		Faces::writeFile	(	void	)
 		Face	face	=	getData(cnt);
 		std::queue<int>	data;
 
-		for(size_t num=0;num<POINTS_PER_FACE;++num)
+		for(size_t cnt2=0;cnt2<face.mPoints.size();++cnt2)
 		{
-			data.push(face.mPoint[num]);
+			data.push(face.mPoints[cnt2]);
 		}
 		mParser.writeData(data, true);
 	}

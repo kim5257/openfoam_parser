@@ -37,11 +37,9 @@ typedef	Owner					Neighbour;
 typedef	owner_vector_t		neighbour_vector_t;
 
 // Face 구조체 및 Vector 자료구조 정의
-#define	POINTS_PER_FACE	(4)
-
 struct	Face
 {
-	uint32_t	mPoint[POINTS_PER_FACE];
+	std::vector<uint32_t>	mPoints;
 };
 
 typedef	std::vector<Face>		face_vector_t;

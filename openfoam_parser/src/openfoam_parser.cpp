@@ -19,19 +19,37 @@
 namespace openfoam
 {
 
+Parser::Parser	(	void	)
+:mOpenType(FILE_NULL),
+ mFile(NULL),
+ mBuf(BUF_SIZE),
+ mDataSize(0),
+ mDataOffset(0),
+ mBlanked(false),
+ mReadHdr(false),
+ mReadSize(false),
+ mReadData(false),
+ mDataDepth(0),
+ mElemSize(0),
+ mCurState(NOTHING)
+{
+}
+
 Parser::Parser	(	const char		fileName[],
 						OpenType		type
 					)
-:mFile(NULL),
-mBuf(BUF_SIZE),
-mDataSize(0),
-mDataOffset(0),
-mBlanked(false),
-mReadHdr(false),
-mReadSize(false),
-mReadData(false),
-mDataDepth(0),
-mCurState(NOTHING)
+:mOpenType(FILE_NULL),
+ mFile(NULL),
+ mBuf(BUF_SIZE),
+ mDataSize(0),
+ mDataOffset(0),
+ mBlanked(false),
+ mReadHdr(false),
+ mReadSize(false),
+ mReadData(false),
+ mDataDepth(0),
+ mElemSize(0),
+ mCurState(NOTHING)
 {
 	open(fileName, type);
 }
@@ -72,9 +90,12 @@ void	Parser::open	(	const char		fileName[],
 
 void	Parser::close	(	void	)
 {
-	fclose(mFile);
-	mFile		=	NULL;
-	mFileName	=	"";
+	if( mFile != NULL )
+	{
+		fclose(mFile);
+		mFile		=	NULL;
+		mFileName	=	"";
+	}
 }
 
 void	Parser::readHdr	(	void	)
@@ -117,11 +138,23 @@ bool	Parser::readData	(	void	)
 
 void	Parser::writeComment		(	void	)
 {
+	if( !isOpen() )
+	{
+		// 파일 열기 하기 않음
+		throw	ErrMsg::createErrMsg("파일을 열기 하지 않음");
+	}
+
 	fprintf(mFile, OPENFOAM_TOP_COMMENT);
 }
 
 void	Parser::writeHdr			(	void	)
 {
+	if( !isOpen() )
+	{
+		// 파일 열기 하기 않음
+		throw	ErrMsg::createErrMsg("파일을 열기 하지 않음");
+	}
+
 	fprintf(mFile, OPENFOAM_HDR_START);
 
 	if( strcmp(mHdr.getVersion(), "") != 0 )
@@ -160,16 +193,34 @@ void	Parser::writeHdr			(	void	)
 
 void	Parser::writeSize			(	size_t		size	)
 {
+	if( !isOpen() )
+	{
+		// 파일 열기 하기 않음
+		throw	ErrMsg::createErrMsg("파일을 열기 하지 않음");
+	}
+
 	fprintf(mFile, "%lu\n", size);
 }
 
 void	Parser::writeDataStart	(	void	)
 {
+	if( !isOpen() )
+	{
+		// 파일 열기 하기 않음
+		throw	ErrMsg::createErrMsg("파일을 열기 하지 않음");
+	}
+
 	fprintf(mFile, OPENFOAM_DATA_START"\n");
 }
 
 void	Parser::writeDataEnd		(	void	)
 {
+	if( !isOpen() )
+	{
+		// 파일 열기 하기 않음
+		throw	ErrMsg::createErrMsg("파일을 열기 하지 않음");
+	}
+
 	fprintf(mFile, OPENFOAM_DATA_END"\n");
 
 	fprintf(mFile, "\n\n");
@@ -180,6 +231,12 @@ void	Parser::writeData			(	std::queue<int>		data,
 										bool					showFlag
 									)
 {
+	if( !isOpen() )
+	{
+		// 파일 열기 하기 않음
+		throw	ErrMsg::createErrMsg("파일을 열기 하지 않음");
+	}
+
 	if( 1 < data.size() )
 	{
 		if( showFlag )
@@ -208,6 +265,12 @@ void	Parser::writeData			(	std::queue<double>	data,
 										bool					showFlag
 									)
 {
+	if( !isOpen() )
+	{
+		// 파일 열기 하기 않음
+		throw	ErrMsg::createErrMsg("파일을 열기 하지 않음");
+	}
+
 	if( 1 < data.size() )
 	{
 		if( showFlag )
@@ -235,6 +298,12 @@ void	Parser::writeData			(	std::queue<double>	data,
 bool	Parser::doHandle	(	void	)
 {
 	bool	finish		=	true;
+
+	if( !isOpen() )
+	{
+		// 파일 열기 하기 않음
+		throw	ErrMsg::createErrMsg("파일을 열기 하지 않음");
+	}
 
 	if( mDataSize == mDataOffset )
 	{
@@ -285,12 +354,24 @@ void	Parser::readBuf	(	void	)
 void	Parser::changeState	(	State		state
 								)
 {
+	if( !isOpen() )
+	{
+		// 파일 열기 하기 않음
+		throw	ErrMsg::createErrMsg("파일을 열기 하지 않음");
+	}
+
 	mStateStack.push(mCurState);
 	mCurState	=	state;
 }
 
 void	Parser::returnState	(	void	)
 {
+	if( !isOpen() )
+	{
+		// 파일 열기 하기 않음
+		throw	ErrMsg::createErrMsg("파일을 열기 하지 않음");
+	}
+
 	mCurState	=	mStateStack.top();
 	mStateStack.pop();
 }

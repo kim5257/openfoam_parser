@@ -10,6 +10,12 @@
 namespace openfoam
 {
 
+Parser_labelList::Parser_labelList		(	void	)
+:Parser()
+{
+
+}
+
 Parser_labelList::Parser_labelList		(	const char		fileName[],
 												OpenType		type
 											)

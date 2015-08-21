@@ -22,11 +22,16 @@ private:
 	Parser_labelList		mParser;
 	neighbour_vector_t	mData;
 public:
+				Neighbours		(	void	);
 				Neighbours		(	const char			fileName[],
 									Parser::OpenType	type
 								);
 	virtual	~Neighbours	(	void	);
 public:
+	void			open			(	const char			fileName[],
+										Parser::OpenType	type
+									);
+	void			close			(	void	);
 	void			readFile		(	void	);
 	void			writeFile		(	void	);
 	Neighbour&		getData		(	size_t				index		);

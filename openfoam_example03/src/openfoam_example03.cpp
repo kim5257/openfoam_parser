@@ -14,7 +14,9 @@ int		main	(	int 	argc,
 	try
 	{
 		openfoam::Points	points("points", openfoam::Parser::FILE_READ);
-		openfoam::Points	points2("copy_points", openfoam::Parser::FILE_WRITE);
+		openfoam::Points	points2;
+
+		points2.open("copy_points", openfoam::Parser::FILE_WRITE);
 
 		// owner 헤더 및 데이터 읽기
 		points.readFile();

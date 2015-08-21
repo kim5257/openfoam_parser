@@ -20,6 +20,7 @@ class	Parser_boundary:
 private:
 	InfoData	mInfoData;
 public:
+				Parser_boundary		(	void	);
 				Parser_boundary		(	const char		fileName[],
 											OpenType		type
 										);

@@ -14,7 +14,9 @@ int		main	(	int 	argc,
 	try
 	{
 		openfoam::Neighbours	neighbours("neighbour", openfoam::Parser::FILE_READ);
-		openfoam::Neighbours	neighbours2("copy_neighbour", openfoam::Parser::FILE_WRITE);
+		openfoam::Neighbours	neighbours2;
+
+		neighbours2.open("copy_neighbour", openfoam::Parser::FILE_WRITE);
 
 		// owner 헤더 및 데이터 읽기
 		neighbours.readFile();

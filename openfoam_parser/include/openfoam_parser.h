@@ -23,6 +23,7 @@ class	Parser
 public:
 	enum	OpenType
 	{
+		FILE_NULL,
 		FILE_READ,
 		FILE_WRITE
 	};
@@ -61,16 +62,16 @@ protected:
 	State					mCurState;
 	std::stack<State>		mStateStack;
 public:
+				Parser		(	void	);
 				Parser		(	const char		fileName[],
 								OpenType		type
 							);
 	virtual	~Parser	(	void	);
-private:
+public:
 	void	open	(	const char		fileName[],
 						OpenType		type
 					);
 	void	close	(	void	);
-public:
 	void	readHdr	(	void	);
 	void	readSize	(	void	);
 	bool	readData	(	void	);
@@ -114,6 +115,7 @@ public:
 	inline void	setHdr		(	const Hdr&		hdr		);
 	inline size_t	getSize	(	void	) const;
 	inline std::queue<double>	getData	(	void	);
+	inline bool	isOpen	(	void	);
 };
 
 bool	Parser::isBlank	(	char	val		)
@@ -185,6 +187,11 @@ std::queue<double>	Parser::getData	(	void	)
 {
 	mReadData	=	false;
 	return	mDataQueue;
+}
+
+bool	Parser::isOpen	(	void	)
+{
+	return	(mFile!=NULL)?(true):(false);
 }
 
 }

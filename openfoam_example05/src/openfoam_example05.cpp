@@ -14,7 +14,9 @@ int		main	(	int 	argc,
 	try
 	{
 		openfoam::Faces	faces("faces", openfoam::Parser::FILE_READ);
-		openfoam::Faces	faces2("copy_faces", openfoam::Parser::FILE_WRITE);
+		openfoam::Faces	faces2;
+
+		faces2.open("copy_faces", openfoam::Parser::FILE_WRITE);
 
 		// owner 헤더 및 데이터 읽기
 		faces.readFile();

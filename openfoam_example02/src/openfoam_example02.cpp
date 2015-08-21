@@ -10,7 +10,9 @@ int		main	(	int 	argc,
 	try
 	{
 		openfoam::Owners	owners("owner", openfoam::Parser::FILE_READ);
-		openfoam::Owners	owners2("copy_owner", openfoam::Parser::FILE_WRITE);
+		openfoam::Owners	owners2;
+
+		owners2.open("copy_owner", openfoam::Parser::FILE_WRITE);
 
 		// owner 헤더 및 데이터 읽기
 		owners.readFile();

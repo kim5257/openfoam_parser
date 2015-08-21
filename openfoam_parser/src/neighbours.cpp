@@ -10,6 +10,12 @@
 namespace	openfoam
 {
 
+Neighbours::Neighbours	(	void	)
+:mParser()
+{
+
+}
+
 Neighbours::Neighbours	(	const char			fileName[],
 								Parser::OpenType	type
 							)
@@ -21,6 +27,18 @@ Neighbours::Neighbours	(	const char			fileName[],
 Neighbours::~Neighbours	(	void	)
 {
 
+}
+
+void			Neighbours::open			(	const char			fileName[],
+												Parser::OpenType	type
+											)
+{
+	mParser.open(fileName, type);
+}
+
+void			Neighbours::close			(	void	)
+{
+	mParser.close();
 }
 
 void			Neighbours::readFile		(	void	)

@@ -11,6 +11,12 @@
 namespace	openfoam
 {
 
+Boundaries::Boundaries	(	void	)
+:mParser()
+{
+
+}
+
 Boundaries::Boundaries	(	const char			fileName[],
 								Parser::OpenType	type
 							)
@@ -22,6 +28,18 @@ Boundaries::Boundaries	(	const char			fileName[],
 Boundaries::~Boundaries	(	void	)
 {
 
+}
+
+void		Boundaries::open		(	const char			fileName[],
+										Parser::OpenType	type
+									)
+{
+	mParser.open(fileName, type);
+}
+
+void		Boundaries::close		(	void	)
+{
+	mParser.close();
 }
 
 void	Boundaries::readFile	(	void	)

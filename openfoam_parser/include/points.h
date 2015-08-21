@@ -22,11 +22,16 @@ private:
 	Parser				mParser;
 	point_vector_t	mData;
 public:
+				Points		(	void	);
 				Points		(	const char			fileName[],
 								Parser::OpenType	type
 							);
 	virtual	~Points	(	void	);
 public:
+	void		open		(	const char			fileName[],
+								Parser::OpenType	type
+							);
+	void		close		(	void	);
 	void		readFile	(	void	);
 	void		writeFile	(	void	);
 	Point&		getData	(	size_t			index	);

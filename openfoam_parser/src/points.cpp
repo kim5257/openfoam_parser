@@ -10,6 +10,12 @@
 namespace	openfoam
 {
 
+Points::Points	(	void	)
+:mParser()
+{
+
+}
+
 Points::Points	(	const char			fileName[],
 						Parser::OpenType	type
 					)
@@ -21,6 +27,18 @@ Points::Points	(	const char			fileName[],
 Points::~Points	(	void	)
 {
 
+}
+
+void		Points::open		(	const char			fileName[],
+									Parser::OpenType	type
+								)
+{
+	mParser.open(fileName, type);
+}
+
+void		Points::close		(	void	)
+{
+	mParser.close();
 }
 
 void		Points::readFile	(	void	)

@@ -22,11 +22,16 @@ private:
 	Parser_boundary		mParser;
 	boundary_vector_t		mData;
 public:
+				Boundaries		(	void	);
 				Boundaries		(	const char			fileName[],
 									Parser::OpenType	type
 								);
 	virtual	~Boundaries	(	void	);
 public:
+	void		open		(	const char			fileName[],
+								Parser::OpenType	type
+							);
+	void		close		(	void	);
 	void		readFile	(	void	);
 	void		writeFile	(	void	);
 	Boundary&	getData	(	size_t				index	);

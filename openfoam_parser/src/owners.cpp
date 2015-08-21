@@ -10,16 +10,35 @@
 namespace	openfoam
 {
 
+Owners::Owners	(	void	)
+:mParser()
+{
+
+}
+
 Owners::Owners	(	const char			fileName[],
 						Parser::OpenType	type
 					)
 :mParser(fileName, type)
 {
+
 }
 
 Owners::~Owners	(	void	)
 {
 
+}
+
+void		Owners::open		(	const char			fileName[],
+									Parser::OpenType	type
+								)
+{
+	mParser.open(fileName, type);
+}
+
+void		Owners::close		(	void	)
+{
+	mParser.close();
 }
 
 void		Owners::readFile	(	void	)

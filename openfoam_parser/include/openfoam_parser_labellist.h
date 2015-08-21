@@ -17,6 +17,7 @@ class	Parser_labelList:
 		public Parser
 {
 public:
+				Parser_labelList		(	void	);
 				Parser_labelList		(	const char		fileName[],
 											OpenType		type
 										);

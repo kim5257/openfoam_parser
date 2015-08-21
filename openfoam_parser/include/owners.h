@@ -22,11 +22,16 @@ private:
 	Parser_labelList	mParser;
 	owner_vector_t	mData;
 public:
+				Owners		(	void	);
 				Owners		(	const char			fileName[],
 								Parser::OpenType	type
 							);
 	virtual	~Owners	(	void	);
 public:
+	void		open		(	const char			fileName[],
+								Parser::OpenType	type
+							);
+	void		close		(	void	);
 	void		readFile	(	void	);
 	void		writeFile	(	void	);
 	Owner&		getData	(	size_t			index	);

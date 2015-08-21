@@ -14,7 +14,9 @@ int		main	(	int 	argc,
 	try
 	{
 		openfoam::Boundaries		boundaries("boundary", openfoam::Parser::FILE_READ);
-		openfoam::Boundaries		boundaries2("copy_boundary", openfoam::Parser::FILE_WRITE);
+		openfoam::Boundaries		boundaries2;
+
+		boundaries2.open("copy_boundary", openfoam::Parser::FILE_WRITE);
 
 		// owner 헤더 및 데이터 읽기
 		boundaries.readFile();

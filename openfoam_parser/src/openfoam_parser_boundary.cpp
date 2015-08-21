@@ -6,9 +6,17 @@
  */
 
 #include "openfoam_parser_boundary.h"
+#include "openfoam_error.h"
 
 namespace openfoam
 {
+
+Parser_boundary::Parser_boundary		(	void	)
+:Parser(),
+ mInfoData("")
+{
+
+}
 
 Parser_boundary::Parser_boundary		(	const char		fileName[],
 												OpenType		type
@@ -28,6 +36,12 @@ void	Parser_boundary::writeData	(	InfoData	info	)
 {
 	std::string	hdr		=	info.getHdr();
 	std::string	tmpStr;
+
+	if( !isOpen() )
+	{
+		// 파일 열기 하기 않음
+		throw	ErrMsg::createErrMsg("파일을 열기 하지 않음");
+	}
 
 	fprintf(getFP(), "    %s\n    {\n", hdr.c_str());
 
