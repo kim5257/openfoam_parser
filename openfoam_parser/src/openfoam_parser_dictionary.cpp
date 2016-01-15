@@ -5,20 +5,20 @@
  *      Author: asran
  */
 
-#include "openfoam_parser_boundary.h"
+#include "openfoam_parser_dictionary.h"
 #include "openfoam_error.h"
 
 namespace openfoam
 {
 
-Parser_boundary::Parser_boundary		(	void	)
+Parser_dictionary::Parser_dictionary		(	void	)
 :Parser(),
  mInfoData("")
 {
 
 }
 
-Parser_boundary::Parser_boundary		(	const char		fileName[],
+Parser_dictionary::Parser_dictionary		(	const char		fileName[],
 												OpenType		type
 											)
 :Parser(fileName, type),
@@ -27,15 +27,16 @@ Parser_boundary::Parser_boundary		(	const char		fileName[],
 
 }
 
-Parser_boundary::~Parser_boundary		(	void	)
+Parser_dictionary::~Parser_dictionary		(	void	)
 {
 
 }
 
-void	Parser_boundary::writeData	(	InfoData	info	)
+void	Parser_dictionary::writeData	(	InfoData	info	)
 {
 	std::string	hdr		=	info.getHdr();
 	std::string	tmpStr;
+	std::vector<std::string> tmpStrList;
 
 	if( !isOpen() )
 	{
@@ -43,19 +44,22 @@ void	Parser_boundary::writeData	(	InfoData	info	)
 		throw	ErrMsg::createErrMsg("파일을 열기 하지 않음");
 	}
 
-	fprintf(getFP(), "    %s\n    {\n", hdr.c_str());
+	fprintf(getFP(), "%s\n{\n", hdr.c_str());
 
 	tmpStr	=	info.getSingleData("type");
-	fprintf(getFP(), "        %-15s %s;\n", "type", tmpStr.c_str());
-	tmpStr	=	info.getSingleData("nFaces");
-	fprintf(getFP(), "        %-15s %s;\n", "nFaces", tmpStr.c_str());
-	tmpStr	=	info.getSingleData("startFace");
-	fprintf(getFP(), "        %-15s %s;\n", "startFace", tmpStr.c_str());
+	fprintf(getFP(), "    %-15s %s;\n", "type", tmpStr.c_str());
 
-	fprintf(getFP(), "    }\n");
+	tmpStrList = info.getData("cellLabels");
+
+	fprintf(getFP(), "    %-15s %d ( ", "cellLabels", tmpStrList.size());
+	for(int cnt=0;cnt<tmpStrList.size();++cnt)
+	{
+		fprintf(getFP(), "%s ", tmpStrList[cnt].c_str());
+	}
+	fprintf(getFP(), ");\n}\n\n");
 }
 
-void	Parser_boundary::doData		(	char	val		)
+void	Parser_dictionary::doData		(	char	val		)
 {
 	do
 	{
@@ -121,17 +125,43 @@ void	Parser_boundary::doData		(	char	val		)
 		case ';':
 			{
 				std::string	name;
-				std::string	value;
 
 				mStrQueue.push(mString);
 				mString.clear();
 
 				name	=	mStrQueue.front();
 				mStrQueue.pop();
-				value		=	mStrQueue.front();
-				mStrQueue.pop();
 
-				mInfoData.setSingleData(name, value);
+				if( name == "cellLabels" )
+				{
+					size_t size = atoi(mStrQueue.front().c_str());
+					mStrQueue.pop();
+					std::vector<std::string> values;
+
+
+					// 소괄호 빼기
+					mStrQueue.pop();
+
+					for(size_t cnt=0;cnt<size;++cnt)
+					{
+						// 데이터 하나씩 넣기
+						values.push_back(mStrQueue.front());
+						mStrQueue.pop();
+					}
+
+					mInfoData.setData(name, values);
+
+					mStrQueue.pop();
+				}
+				else
+				{
+					std::string	value;
+
+					value		=	mStrQueue.front();
+					mStrQueue.pop();
+
+					mInfoData.setSingleData(name, value);
+				}
 			}
 			break;
 		// 문자열 처리

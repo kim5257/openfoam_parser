@@ -67,11 +67,11 @@ void	Boundaries::readFile	(	void	)
 		std::string	tmpStr;
 
 		boundary.mName	=	data.getHdr();
-		boundary.mType	=	data.getData("type");
+		boundary.mType	=	data.getSingleData("type");
 
-		tmpStr		=	data.getData("nFaces");
+		tmpStr		=	data.getSingleData("nFaces");
 		boundary.mFaces	=	atol(tmpStr.c_str());
-		tmpStr		=	data.getData("startFace");
+		tmpStr		=	data.getSingleData("startFace");
 		boundary.mStartFace	=	atol(tmpStr.c_str());
 
 		// Boundary 값을 Boundaries 자료구조에 적재
@@ -93,13 +93,13 @@ void	Boundaries::writeFile	(	void	)
 		InfoData	infoData	=	InfoData(boundary.mName);
 		char		tmpStr[5]	=	{0,};
 
-		infoData.setData("type", boundary.mType);
+		infoData.setSingleData("type", boundary.mType);
 
 		sprintf(tmpStr, "%d", boundary.mFaces);
-		infoData.setData("nFaces", tmpStr);
+		infoData.setSingleData("nFaces", tmpStr);
 
 		sprintf(tmpStr, "%d", boundary.mStartFace);
-		infoData.setData("startFace", tmpStr);
+		infoData.setSingleData("startFace", tmpStr);
 
 		mParser.writeData(infoData);
 	}

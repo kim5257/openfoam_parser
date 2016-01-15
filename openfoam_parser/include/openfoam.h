@@ -13,5 +13,6 @@
 #include <faces.h>
 #include <neighbours.h>
 #include <boundaries.h>
+#include <dictionaries.h>
 
 #endif /* INCLUDE__OPENFOAM_H_ */

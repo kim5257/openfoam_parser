@@ -54,6 +54,15 @@ struct	Boundary
 
 typedef	std::vector<Boundary>	boundary_vector_t;
 
+struct Dictionary
+{
+	std::string		mName;
+	std::string		mType;
+	std::vector<int>	mCellLabels;
+};
+
+typedef	std::vector<Dictionary>	dic_vector_t;
+
 }
 
 #endif	/* INCLUDE__OPENFOAM_TYPEDEF_H_ */
