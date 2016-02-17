@@ -332,6 +332,12 @@ bool	Parser::doHandle	(	void	)
 		case STRING:
 			doString(mBuf[mDataOffset]);
 			break;
+		case DIMENSIONS:
+			doDimensions(mBuf[mDataOffset]);
+			break;
+		case INTERNALFIELD:
+			doInternalField(mBuf[mDataOffset]);
+			break;
 		}
 
 		++mDataOffset;
@@ -771,6 +777,20 @@ void		Parser::doData		(	char	val		)
 				returnState();
 			}
 			break;
+		case ';':
+			{
+				std::string name = mStrQueue.front();
+
+				if( name == "dimensions" )
+				{
+					changeState(DIMENSIONS);
+				}
+				else if( name == "internalField" )
+				{
+					changeState(INTERNALFIELD);
+				}
+			}
+			break;
 		default:
 			if( mBlanked )
 			{
@@ -812,6 +832,22 @@ void		Parser::doString		(	char	val		)
 			mString	+=	val;
 			break;
 		}
+	}while(0);
+}
+
+void	Parser::doDimensions		(	char	val		)
+{
+	do
+	{
+
+	}while(0);
+}
+
+void	Parser::doInternalField	(	char	val		)
+{
+	do
+	{
+
 	}while(0);
 }
 

@@ -58,6 +58,8 @@ protected:
 		HEADER,
 		DATA,
 		STRING,
+		DIMENSIONS,
+		INTERNALFIELD,
 	};
 	State					mCurState;
 	std::stack<State>		mStateStack;
@@ -100,6 +102,8 @@ protected:
 	virtual void		doHeader		(	char	val		);
 	virtual void		doData			(	char	val		);
 	virtual void		doString		(	char	val		);
+	virtual void		doDimensions	(	char	val		);
+	virtual void		doInternalField	(	char	val		);
 protected:
 	bool	isDigit	(	const char		str[]	);
 protected:
