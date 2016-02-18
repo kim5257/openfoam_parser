@@ -14,5 +14,6 @@
 #include <neighbours.h>
 #include <boundaries.h>
 #include <dictionaries.h>
+#include <scalarfields.h>
 
 #endif /* INCLUDE__OPENFOAM_H_ */

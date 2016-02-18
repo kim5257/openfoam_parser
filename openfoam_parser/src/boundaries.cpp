@@ -129,5 +129,4 @@ void	Boundaries::copy		(	const Boundaries&		boundaries	)
 	mParser.setHdr(boundaries.mParser.getHdr());
 }
 
-
 }

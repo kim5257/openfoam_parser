@@ -37,6 +37,7 @@ public:
 	inline std::vector<std::string>	getData	(	std::string	name	);
 	inline std::string	getHdr			(	void	) const;
 	inline info_data_elem&	getAllData	(	void	);
+	inline bool isExistData ( std::string name );
 };
 
 InfoData::InfoData	(	std::string	hdr		)
@@ -84,6 +85,19 @@ InfoData::info_data_elem&
 				InfoData::getAllData	(	void	)
 {
 	return	mData;
+}
+
+bool InfoData::isExistData ( std::string name )
+{
+	bool ret = false;
+
+	std::map<std::string, std::vector<std::string> >::iterator itor = mData.find(name);
+	if( itor != mData.end() )
+	{
+		ret = true;
+	}
+
+	return ret;
 }
 
 }

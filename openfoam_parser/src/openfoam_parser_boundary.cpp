@@ -178,6 +178,3 @@ void	Parser_boundary::doData		(	char	val		)
 }
 
 }
-
-
-

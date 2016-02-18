@@ -34,10 +34,11 @@ int		main	(	int 	argc,
 		printf("(\n");
 		for(size_t cnt=0;cnt<faces.getSize();++cnt)
 		{
-			printf("%d(", POINTS_PER_FACE);
-			for(size_t num=0;num<POINTS_PER_FACE;++num)
+			size_t pointSize = faces[cnt].mPoints.size();
+			printf("%lu(", pointSize);
+			for(size_t num=0;num<pointSize;++num)
 			{
-				printf("%d ", faces[cnt].mPoint[num]);
+				printf("%d ", faces[cnt].mPoints[num]);
 			}
 			printf(")\n");
 		}

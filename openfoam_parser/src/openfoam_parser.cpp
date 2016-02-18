@@ -191,6 +191,25 @@ void	Parser::writeHdr			(	void	)
 	fprintf(mFile, OPENFOAM_MID_SEPARATE"\n\n\n");
 }
 
+void	Parser::writeDimensions	(	void	)
+{
+	fprintf(mFile, DIMENSIONS_FORMAT, STR_DIMENSIONS);
+
+	fprintf(mFile, "[");
+	for(size_t cnt=0;cnt<mDimensions.size()-1;++cnt)
+	{
+		fprintf(mFile, "%.0lf ", mDimensions[cnt]);
+	}
+	fprintf(mFile, "%.0lf];\n\n", mDimensions.size()-1);
+}
+
+void	Parser::writeIntalField	(	void	)
+{
+	fprintf(mFile, INTERNALFIELD_FORMAT, STR_INTERNALFIELD);
+
+	fprintf(mFile, STR_UNIFORM" %.0lf;\n\n", mInternalField[0]);
+}
+
 void	Parser::writeSize			(	size_t		size	)
 {
 	if( !isOpen() )
@@ -390,7 +409,7 @@ void		Parser::doNothing		(	char	val		)
 		if( isBlank(val) )
 		{
 			mBlanked	=	true;
-			break;
+			//break;
 		}
 
 		switch( val )
@@ -429,9 +448,8 @@ void		Parser::doNothing		(	char	val		)
 		// 헤더 관련 키워드 처리
 		case '{':
 			{
-				if( mString == "FoamFile" )
+				if( mStrQueue.front() == "FoamFile" )
 				{
-
 					changeState(HEADER);
 
 					mToken.clear();
@@ -440,16 +458,21 @@ void		Parser::doNothing		(	char	val		)
 					mReadHdr	=	false;
 					DEBUG_PRINT("헤더 진입\n");
 				}
+
+				mStrQueue.pop();
 			}
 			break;
 		// 데이터 관련 키워드 처리
 		case '(':
 			{
-				if( isDigit(mString.c_str()) )
+				std::string name = mStrQueue.front();
+				mStrQueue.pop();
+
+				if( isDigit(name.c_str()) )
 				{
 					changeState(DATA);
 
-					mElemSize	=	atol(mString.c_str());
+					mElemSize	=	atol(name.c_str());
 					mReadSize	=	true;
 
 					++mDataDepth;
@@ -469,13 +492,23 @@ void		Parser::doNothing		(	char	val		)
 		default:
 			if( mBlanked )
 			{
-				if( mString != "" )
+				if( mString == "dimensions" )
+				{
+					changeState(DIMENSIONS);
+					mString.clear();
+				}
+				else if( mString == "internalField" )
+				{
+					changeState(INTERNALFIELD);
+					mString.clear();
+				}
+				else if( mString != "" )
 				{
 					mStrQueue.push(mString);
 					mString.clear();
 				}
 
-				mString	+=	val;
+				//mString	+=	val;
 			}
 			else
 			{
@@ -777,20 +810,6 @@ void		Parser::doData		(	char	val		)
 				returnState();
 			}
 			break;
-		case ';':
-			{
-				std::string name = mStrQueue.front();
-
-				if( name == "dimensions" )
-				{
-					changeState(DIMENSIONS);
-				}
-				else if( name == "internalField" )
-				{
-					changeState(INTERNALFIELD);
-				}
-			}
-			break;
 		default:
 			if( mBlanked )
 			{
@@ -839,6 +858,52 @@ void	Parser::doDimensions		(	char	val		)
 {
 	do
 	{
+		// 공백류 문자는 무시
+		if( isBlank(val) )
+		{
+			mBlanked	=	true;
+			//break;
+		}
+
+		switch( val )
+		{
+		case '[':
+			mString.clear();
+			break;
+		case ']':
+			{
+				const char* str	=	mString.c_str();
+				mDimensions.push_back(atof(str));
+			}
+			break;
+		case ';':
+			mString.clear();
+			returnState();
+			DEBUG_PRINT("dimensions 종료\n");
+			break;
+		default:
+			if( mBlanked )
+			{
+				if( mString != "" )
+				{
+					const char* str	=	mString.c_str();
+					mDimensions.push_back(atof(str));
+					mString.clear();
+				}
+
+				//mString	+=	val;
+			}
+			else
+			{
+				mString	+=	mToken;
+				mString	+=	val;
+
+				mToken.clear();
+			}
+			break;
+		}
+
+		mBlanked	=	false;
 
 	}while(0);
 }
@@ -847,6 +912,97 @@ void	Parser::doInternalField	(	char	val		)
 {
 	do
 	{
+		// 공백류 문자는 무시
+		if( isBlank(val) )
+		{
+			mBlanked	=	true;
+			//break;
+		}
+
+		switch( val )
+		{
+		case ';':
+			mInternalField.push_back(atof(mString.c_str()));
+			mString.clear();
+			returnState();
+			DEBUG_PRINT("internalField 종료\n");
+			break;
+		default:
+			if( mBlanked )
+			{
+				if( mString != "" )
+				{
+					const char* str	=	mString.c_str();
+					mString.clear();
+				}
+
+				//mString	+=	val;
+			}
+			else
+			{
+				mString	+=	mToken;
+				mString	+=	val;
+
+				mToken.clear();
+			}
+			break;
+		}
+
+		mBlanked	=	false;
+
+	}while(0);
+}
+
+void	Parser::doValue			(	char	val		)
+{
+	do
+	{
+		// 공백류 문자는 무시
+		if( isBlank(val) )
+		{
+			mBlanked	=	true;
+			//break;
+		}
+
+		switch( val )
+		{
+		case '(':
+			mString.clear();
+			break;
+		case ')':
+			break;
+		case ';':
+			{
+				const char* str	=	mString.c_str();
+				mValue.push_back(atof(str));
+
+				returnState();
+				DEBUG_PRINT("values 종료\n");
+			}
+			break;
+		default:
+			if( mBlanked )
+			{
+				if( mString != "" )
+				{
+					const char* str	=	mString.c_str();
+					mValue.push_back(atof(str));
+					mString.clear();
+				}
+
+				//mString	+=	val;
+			}
+			else
+			{
+				mString	+=	mToken;
+				mString	+=	val;
+
+				mToken.clear();
+			}
+			break;
+		}
+
+		mBlanked	=	false;
 
 	}while(0);
 }

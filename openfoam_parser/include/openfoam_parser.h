@@ -60,9 +60,13 @@ protected:
 		STRING,
 		DIMENSIONS,
 		INTERNALFIELD,
+		VALUE,
 	};
 	State					mCurState;
 	std::stack<State>		mStateStack;
+	std::vector<double>	mValue;
+	std::vector<double>	mDimensions;
+	std::vector<double>	mInternalField;
 public:
 				Parser		(	void	);
 				Parser		(	const char		fileName[],
@@ -80,6 +84,8 @@ public:
 public:
 	void	writeComment		(	void	);
 	void	writeHdr			(	void	);
+	void	writeDimensions	(	void	);
+	void	writeIntalField	(	void	);
 	void	writeSize			(	size_t		size	);
 	void	writeDataStart	(	void	);
 	void	writeDataEnd		(	void	);
@@ -104,6 +110,7 @@ protected:
 	virtual void		doString		(	char	val		);
 	virtual void		doDimensions	(	char	val		);
 	virtual void		doInternalField	(	char	val		);
+	virtual void		doValue			(	char	val		);
 protected:
 	bool	isDigit	(	const char		str[]	);
 protected:
@@ -114,6 +121,10 @@ protected:
 public:
 	inline	OpenType		getOpenType	(	void	) const;
 	inline std::string	getFileName	(	void	) const;
+	inline std::vector<double>	getDimensions		(	void	) const;
+	inline std::vector<double>	getInternalField	(	void	) const;
+	inline void	setDimensions		(	const std::vector<double>&	data );
+	inline void	setInternalField	(	const std::vector<double>&	data );
 	inline	Hdr		getHdr		(	void	) const;
 	inline Hdr&	refHdr		(	void	);
 	inline void	setHdr		(	const Hdr&		hdr		);
@@ -165,6 +176,26 @@ Parser::OpenType		Parser::getOpenType	(	void	) const
 std::string	Parser::getFileName	(	void	) const
 {
 	return	mFileName;
+}
+
+std::vector<double>	Parser::getDimensions	(	void	) const
+{
+	return	mDimensions;
+}
+
+std::vector<double>	Parser::getInternalField	(	void	) const
+{
+	return	mInternalField;
+}
+
+void	Parser::setDimensions	(	const std::vector<double>&	data )
+{
+	mDimensions = data;
+}
+
+void	Parser::setInternalField	(	const std::vector<double>&	data )
+{
+	mInternalField = data;
 }
 
 Hdr		Parser::getHdr	(	void	) const

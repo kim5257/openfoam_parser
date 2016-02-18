@@ -63,6 +63,15 @@ struct Dictionary
 
 typedef	std::vector<Dictionary>	dic_vector_t;
 
+struct ScalarField
+{
+	std::string	mName;
+	std::string	mType;
+	std::vector<double>	mValue;
+};
+
+typedef	std::vector<ScalarField>	scalarfield_vector_t;
+
 }
 
 #endif	/* INCLUDE__OPENFOAM_TYPEDEF_H_ */

@@ -37,6 +37,12 @@
 #define	LOCAITON		"location"
 #define	OBJECT			"object"
 
+#define	DIMENSIONS_FORMAT			"%-16s"
+#define	INTERNALFIELD_FORMAT		"%-16s"
+#define	STR_DIMENSIONS			"dimensions"
+#define	STR_INTERNALFIELD			"internalField"
+#define	STR_UNIFORM				"uniform"
+
 #define	OPENFOAM_MID_SEPARATE	\
 "// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //"
 
